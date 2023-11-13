@@ -54,14 +54,9 @@ function index(req, res) {
 function show(req, res) {
 
     const post = doesPostExist(req, res);
-    // Check if post exists
-    if (post) {
-        // Send the post data as JSON response
-        res.json(post);
-    } else {
-        // If post is not found, send a 404 status and message
-        res.status(404).send(`Post non trovato`);
-    }
+
+    res.json(post);
+
 }
 
 
