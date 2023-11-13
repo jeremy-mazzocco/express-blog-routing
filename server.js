@@ -13,10 +13,9 @@ const postConstroller = require("./controllers/posts");
 // Public folder
 app.use(express.static("public"));
 
-
 // Routes
-app.get("/", dashBoardController.index);
-app.get("/posts", postConstroller.posts);
+const postsRouter = require("./routers/posts");
+app.use("/posts", postsRouter);
 
 
 // Start the server
