@@ -8,5 +8,8 @@ router.get("/", postsController.index)
 // show
 router.get("/:slug", postsController.show)
 
+// create
+router.post("/create", postsController.create)
+
 
 module.exports = router;

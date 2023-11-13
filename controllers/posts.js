@@ -1,5 +1,6 @@
 const posts = require("../db/db.js");
 
+
 function index(req, res) {
 
     res.format({
@@ -59,15 +60,29 @@ function show(req, res) {
 
 }
 
+function create(req, res) {
+
+    res.format({
+
+        html: () => {
+
+            const html = ["<h1>Creazione nuovo post</h1>"];
+
+            res.send(html.join(""));
+        },
+        default: () => {
+            res.status(406).send("Not Acceptable");
+        },
+    })
+
+}
+
 
 
 function doesPostExist(req, res) {
 
     const postSlug = req.params.slug;
 
-    console.log(postSlug);
-
-    //    Uncomment the following code
     const post = posts.find((post) => post.slug == postSlug);
 
     if (!post) {
@@ -78,8 +93,9 @@ function doesPostExist(req, res) {
     return post;
 }
 
+
 module.exports = {
     index,
-    show
-
+    show,
+    create
 }
