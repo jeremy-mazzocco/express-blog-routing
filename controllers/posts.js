@@ -1,4 +1,5 @@
 const posts = require("../db/db.js");
+const path = require("path");
 
 
 function index(req, res) {
@@ -77,8 +78,28 @@ function create(req, res) {
 
 }
 
+function download(req, res) {
 
 
+    const post = doesPostExist(req, res);
+
+    const encodedSlug = encodeURIComponent(post.slug);
+
+    const imagePath = path.join(__dirname, '..', 'public', 'imgs', 'posts', post.image);
+
+    res.download(imagePath, `${encodedSlug}`, (err) => {
+
+        if (err) {
+            res.status(500).send('Internal Server Error');
+        }
+    });
+
+}
+
+
+
+
+// other functions
 function doesPostExist(req, res) {
 
     const postSlug = req.params.slug;
@@ -97,5 +118,6 @@ function doesPostExist(req, res) {
 module.exports = {
     index,
     show,
-    create
+    create,
+    download
 }
