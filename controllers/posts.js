@@ -1,13 +1,13 @@
-const postsPath = require("../db/posts.json");
+const postsPath = require("../db/db.js");
 
-function posts(req, res) {
+function index(req, res) {
 
     res.format({
 
         html: () => {
 
             // title
-            const html = ["<h1>I miei Posts</h1>"];
+            const html = ["<h1>Posts</h1>"];
 
             // posts list
             html.push("<ul>");
@@ -17,7 +17,9 @@ function posts(req, res) {
 
                 <h3>${post.title}</h3>
 
-                <img src="/img/posts/${post.image}" alt="" style="width: 150px; height: 150px">
+                <img src="/imgs/posts/${post.image}" alt="" style="width: 150px; height: 150px">
+
+                <p>${post.content}</p>
 
                     </li>`);
 
@@ -51,6 +53,6 @@ function posts(req, res) {
 
 
 module.exports = {
-    posts
+    index
 
 }

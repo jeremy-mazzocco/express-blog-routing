@@ -6,16 +6,12 @@ const app = express();
 const dotenv = require("dotenv");
 dotenv.config();
 
-// Controllers
-const dashBoardController = require("./controllers/dashboard");
-const postConstroller = require("./controllers/posts");
-
 // Public folder
 app.use(express.static("public"));
 
 // Routes
 const postsRouter = require("./routers/posts");
-app.use("/posts", postsRouter);
+app.use("/", postsRouter);
 
 
 // Start the server

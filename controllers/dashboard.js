@@ -1,47 +1,47 @@
-const fs = require("fs");
-const path = require("path");
+// const fs = require("fs");
+// const path = require("path");
 
-/**
- * @param {express.Request} req 
- * @param {express.Response} res 
- */
-function index(req, res) {
+// /**
+//  * @param {express.Request} req 
+//  * @param {express.Response} res 
+//  */
+// function index(req, res) {
 
-    res.format({
+//     res.format({
 
-        text: () => {
-            res.type("text")
-                .send("text reply");
-        },
+//         text: () => {
+//             res.type("text")
+//                 .send("text reply");
+//         },
 
 
-        html: () => {
+//         html: () => {
 
-            // title
-            let headContent = fs.readFileSync(path.resolve(__dirname, "../views/header.html"), "utf-8");
-            let htmlContent = fs.readFileSync(path.resolve(__dirname, "../views/index.html"), "utf-8");
+//             // title
+//             let headContent = fs.readFileSync(path.resolve(__dirname, "../views/header.html"), "utf-8");
+//             let htmlContent = fs.readFileSync(path.resolve(__dirname, "../views/index.html"), "utf-8");
 
-            htmlContent = htmlContent.replace("@header", headContent);
+//             htmlContent = htmlContent.replace("@header", headContent);
             
-            const titleBlog = "Benvenuto nel mio blog!!"
-            htmlContent = htmlContent.replace("{{ titleBlog }}", titleBlog);
+//             const titleBlog = "Benvenuto nel mio blog!!"
+//             htmlContent = htmlContent.replace("{{ titleBlog }}", titleBlog);
 
-            res.type("html").send(htmlContent);
-        },
-
-
-        json: () => {
-            res.type("json").send({
-                message: "JSON reply",
-            });
-        },
-        default: () => {
-            res.status(406).send("Not Acceptable");
-        },
-    })
-}
+//             res.type("html").send(htmlContent);
+//         },
 
 
-module.exports = {
-    index
-}
+//         json: () => {
+//             res.type("json").send({
+//                 message: "JSON reply",
+//             });
+//         },
+//         default: () => {
+//             res.status(406).send("Not Acceptable");
+//         },
+//     })
+// }
+
+
+// module.exports = {
+//     index
+// }
