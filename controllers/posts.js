@@ -1,4 +1,4 @@
-const postsPath = require("../db/db.js");
+const posts = require("../db/db.js");
 
 function index(req, res) {
 
@@ -51,8 +51,40 @@ function index(req, res) {
 
 }
 
+function show(req, res) {
+
+    const post = doesPostExist(req, res);
+    // Check if post exists
+    if (post) {
+        // Send the post data as JSON response
+        res.json(post);
+    } else {
+        // If post is not found, send a 404 status and message
+        res.status(404).send(`Post non trovato`);
+    }
+}
+
+
+
+function doesPostExist(req, res) {
+
+    const postSlug = req.params.slug;
+
+    console.log(postSlug);
+
+    //    Uncomment the following code
+    const post = posts.find((post) => post.slug == postSlug);
+
+    if (!post) {
+        res.status(404).send(`Post non trovato`);
+        return;
+    }
+
+    return post;
+}
 
 module.exports = {
-    index
+    index,
+    show
 
 }
