@@ -50,7 +50,6 @@ function index(req, res) {
             res.status(406).send("Not Acceptable");
         },
     })
-
 }
 
 function show(req, res) {
@@ -58,7 +57,6 @@ function show(req, res) {
     const post = doesPostExist(req, res);
 
     res.json(post);
-
 }
 
 function create(req, res) {
@@ -81,7 +79,6 @@ function create(req, res) {
 function download(req, res) {
 
     const post = doesPostExist(req, res);
-
     const encodedSlug = encodeURIComponent(post.slug);
 
     if (post.image) {
@@ -98,9 +95,6 @@ function download(req, res) {
 
         res.status(404).send(`Immagine non trovata`);
     }
-
-
-
 }
 
 

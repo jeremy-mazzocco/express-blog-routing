@@ -11,7 +11,7 @@ app.use(express.static("public"));
 
 // Routes
 const postsRouter = require("./routers/posts");
-app.use("/", postsRouter);
+app.use("/posts", postsRouter);
 
 
 // Start the server
