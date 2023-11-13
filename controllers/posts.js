@@ -80,19 +80,26 @@ function create(req, res) {
 
 function download(req, res) {
 
-
     const post = doesPostExist(req, res);
 
     const encodedSlug = encodeURIComponent(post.slug);
 
-    const imagePath = path.join(__dirname, '..', 'public', 'imgs', 'posts', post.image);
+    if (post.image) {
 
-    res.download(imagePath, `${encodedSlug}`, (err) => {
+        const imagePath = path.join(__dirname, '..', 'public', 'imgs', 'posts', post.image);
 
-        if (err) {
-            res.status(500).send('Internal Server Error');
-        }
-    });
+        res.download(imagePath, `${encodedSlug}`, (err) => {
+
+            if (err) {
+                res.status(500).send('Internal Server Error');
+            }
+        });
+    } else {
+
+        res.status(404).send(`Immagine non trovata`);
+    }
+
+
 
 }
 
